@@ -1,2 +1,5 @@
 ### get all movies
 GET http://localhost:3000/movies
+
+### get movie by id
+GET http://localhost:3000/movies/1
