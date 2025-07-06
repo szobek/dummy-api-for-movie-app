@@ -1,4 +1,4 @@
-const genres=require('../genres');
+const {genres}=require('../data_files/genres');
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
@@ -6,5 +6,5 @@ const genres=require('../genres');
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
   await knex('genres').del()
-  await knex('genres').insert(genres.genres);
+  await knex('genres').insert(genres);
 };

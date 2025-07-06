@@ -1,5 +1,5 @@
 
-import { Genre } from './models/genre.js';
+import { Genre } from '../models/genre.js';
 export const genres = [
 new Genre('Action', 'Action movies'),
 new Genre('Comedy', 'Comedy movies'),
