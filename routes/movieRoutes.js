@@ -27,6 +27,7 @@ router.post('/search', async (req, res) => {
   await knex('movies')
     .where('title', 'like', `%${searchTerm.title}%`)
     .where('year', 'like', `${searchTerm.year}%`)
+    .where('rating', '>=', searchTerm.rating)
     .then((movies) => {
       res.status(200).json(movies);
     }).catch((err) => {
