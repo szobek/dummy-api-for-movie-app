@@ -1,6 +1,5 @@
  import { Movie } from './models/movie.js';
 export const movies = [
-    new Movie('The Shawshank Redemption', 1994, 9.3, 'Two imprisoned men bond over several years, finding solace and eventual redemption through acts of common decency.'),
     new Movie('The Godfather', 1972, 9.2, 'An organized crime dynasty\'s aging patriarch transfers control of his clandestine empire to his reluctant son.'),
     new Movie('The Dark Knight', 2008, 9.0, 'When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham. The Dark Knight must accept one of the greatest psychological and physical tests of his ability to fight injustice.'),
     new Movie('Pulp Fiction', 1994, 8.9, 'The lives of two mob hitmen, a boxer, a gangster\'s wife, and a pair of diner bandits intertwine in four tales of violence and redemption.'),
