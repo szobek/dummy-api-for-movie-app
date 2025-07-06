@@ -1,16 +1,16 @@
-const express = require('express'),
-  router = express.Router();
-
-const knex = require('../db');
+const express = require('express')
+const router = express.Router()
+const knex = require('../db')
 
 router.get('/', async (req, res) => {
-  const movies = await knex('movies').select('*');
+  const movies=await knex('movies')
+  .select('*');
   res.json(movies);
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const movieId = req.params.id;
-  knex('movies').where('id', movieId).first().then((movie) => {
+  await knex('movies').where('id', movieId).first().then((movie) => {
     if (movie) {
       res.json(movie);
     } else {
@@ -22,16 +22,15 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.post('/search', (req, res) => {
+router.post('/search', async (req, res) => {
   const searchTerm = req.body;
-knex('movies')
-  .where('title', 'like', `%${searchTerm.title}%`)
-  .where( 'year', 'like', `${searchTerm.year}%`)
+  await knex('movies')
+    .where('title', 'like', `%${searchTerm.title}%`)
+    .where('year', 'like', `${searchTerm.year}%`)
     .then((movies) => {
       res.status(200).json(movies);
     }).catch((err) => {
       console.error(err);
-
     });
 });
 
