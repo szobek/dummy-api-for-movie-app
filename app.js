@@ -1,8 +1,11 @@
 import express from 'express';
 
 const app = express();
-import {movieRoutes} from './routes/movieRoutes';
-require('dotenv').config();
+import movieRoutes from './routes/movieRoutes.js';
+// require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 app.use(express.json());
 app.use('/movies', movieRoutes);

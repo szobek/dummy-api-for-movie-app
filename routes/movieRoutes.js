@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express';
 const router = express.Router()
-const knex = require('../db')
+import knex from '../db.js';
 
 router.get('/', async (req, res) => {
   const movies = await knex('movies')
@@ -65,5 +65,4 @@ router.get('/genres/:id', async (req, res) => {
   });
 
 
-
-  module.exports = router;
+export default router;

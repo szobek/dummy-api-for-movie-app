@@ -20,4 +20,7 @@ GET http://localhost:3000/movies/genres
 
 
 ### get all movies by genre
-GET http://localhost:3000/movies/genres/3
+GET http://localhost:3000/movies/genres/2
+
+### get all actors
+GET http://localhost:3000/movies/actors

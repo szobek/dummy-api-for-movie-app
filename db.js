@@ -1,12 +1,13 @@
-const knex = require('knex')({
-    client: 'mysql2',   
-    connection: {
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'movie_db'
-    }
+import knex from 'knex';
+
+const db = knex({
+  client: 'mysql2', 
+  connection: {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'movie_db'
+  }
 });
 
-
-module.exports = knex;
+export default db;
