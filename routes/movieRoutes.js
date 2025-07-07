@@ -14,7 +14,13 @@ router.get('/', async (req, res) => {
     res.json(movies);
   })
 });
-
+router.get('/actors', async (req, res) => {
+  await knex('actors')
+  .select('*')
+  .then((actors) => {
+    res.json(actors);
+  })
+})
 router.get('/genres', async (req, res) => {
   getAllGenre().then((genres) => {
     res.json(genres);
@@ -74,6 +80,31 @@ router.post('/search', async (req, res) => {
       console.error(err);
     });
 });
+
+
+
+router.get('/actors/:id', async (req, res) => {
+  const actorId = req.params.id;
+    if (!actorId|| isNaN(actorId)) {
+      return res.status(400).json({ error: 'Invalid actor ID' });
+    }
+    await knex('movie-actors')
+    .where('actor_id', actorId)
+    .then((results) => {
+      if (results.length > 0) {
+          getMoviesById(results.map(result => result.movie_id)) 
+            .then((movies) => {
+              res.json(movies);
+            })
+            .catch((err) => {
+              res.status(500).json({ error: 'Internal ___ server error' });
+            });
+        } else {
+          res.status(404).json({ error: 'Genre in movies not found' });
+        }
+    } )
+  }
+)
 
 
 export default router;

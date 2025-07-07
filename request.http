@@ -2,7 +2,7 @@
 GET http://localhost:3000/movies
 
 ### get movie by id
-GET http://localhost:3000/movies/4a
+GET http://localhost:3000/movies/4
 
 ### get movie by criteries
 POST http://localhost:3000/movies/search
@@ -24,3 +24,6 @@ GET http://localhost:3000/movies/genres/2
 
 ### get all actors
 GET http://localhost:3000/movies/actors
+
+### get movies by actor
+GET http://localhost:3000/movies/actors/4
