@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+
 const app = express();
-const movieRoutes = require('./routes/movieRoutes');
+import {movieRoutes} from './routes/movieRoutes';
 require('dotenv').config();
 
 app.use(express.json());

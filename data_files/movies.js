@@ -1,4 +1,4 @@
-const {Movie} = require('../models/movie');
+import { Movie } from '../models/movie.js';
 
 export const movies = [
     new Movie('The Godfather', 1972, 9.2, 'An organized crime dynasty\'s aging patriarch transfers control of his clandestine empire to his reluctant son.'),
