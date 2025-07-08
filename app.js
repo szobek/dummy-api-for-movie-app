@@ -4,6 +4,12 @@ const app = express();
 import movieRoutes from './routes/movieRoutes.js';
 // require('dotenv').config();
 import dotenv from 'dotenv';
+import cors from 'cors';
+app.use(cors({
+  origin: 'http://localhost:4200', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
 dotenv.config();
 
 
