@@ -8,9 +8,9 @@ exports.up = function(knex) {
     table.string('title').notNullable();
     table.integer('year').notNullable();
     table.float('rating').notNullable();
-    table.string('director').notNullable();
+    table.string('director').notNullable().defaultTo('Unknown');
     table.text('description').notNullable();
-    table.string('poster_url').notNullable();
+    table.string('poster_url').notNullable().defaultTo('https://via.placeholder.com/300');
     table.timestamps(true, true); // created_at and updated_at timestamps
   });
 };
