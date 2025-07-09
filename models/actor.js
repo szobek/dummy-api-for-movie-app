@@ -1,10 +1,10 @@
 export class Actor {
-    name;
+    fullName;
     bio;
     sex;
     date_of_birth;
     constructor(name, bio, sex, birthday) { 
-        this.name = name;
+        this.fullName = name;
         this.bio = bio;
         this.sex = sex;
         this.date_of_birth = birthday;

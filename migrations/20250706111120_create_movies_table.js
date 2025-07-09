@@ -22,3 +22,15 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema.dropTableIfExists('movies');
 };
+
+
+/*
+
+írj olyan mysql lekérdezést ami 5 táblából veszi az adatot. Minden adat csak egyszer szerepeljen. 
+A táblák:
+ movies - oszlopai: id, title, year, rating, director, description, poster_url
+ genres - oszlopai: id, name, description, created_at, updated_at
+ movie-genre - oszlopai: id, movie_id, genre_id, created_at, updated_at
+movie-actors - oszlopai: id, movie_id, actor_id 
+actors - oszlopai: id, fullName, bio, sex, date_of_birth
+*/
