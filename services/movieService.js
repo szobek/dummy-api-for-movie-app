@@ -5,8 +5,17 @@ const getAllMovies=async (req,res)=>{
     return await knex.raw(query).then((alldata) => {
     alldata[0].forEach(data => {
       // egy film adatai
-      if(data["genres"])      data["genres"] = data["genres"].split(', ');
-      if(data["actors"])      data["actors"] = data["actors"].split(', ');
+      if(data["genres"]) {
+        data["genres"] = data["genres"].split(', ');
+      }
+      else{
+        data["genres"] = [];
+      }
+      if(data["actors"]) {
+        data["actors"] = data["actors"].split(', ');
+      }else{
+        data["actors"] = [];
+      }
     })
     res.json(alldata[0])
   }).catch((err) => {
