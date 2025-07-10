@@ -47,6 +47,10 @@ router.get('/genres/:id', async (req, res) => {
         if (results.length > 0) {
           getMoviesById(results.map(result => result.movie_id))
             .then((movies) => {
+              if (movies.length === 0) {
+                return res.status(404).json({ error: 'Movies not found' });
+              }
+              
               res.json(movies);
             })
             .catch((err) => {
