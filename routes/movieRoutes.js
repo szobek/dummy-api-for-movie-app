@@ -10,6 +10,8 @@ import {
   searchMovies
 } from '../services/movieService.js';
 import { ListGenreDto } from '../dtos/listGenreDto.js';
+import { ListActorsDto } from '../dtos/ListActorsDto.js';
+
 
 
 router.get('/', async (req, res) => {
@@ -20,7 +22,14 @@ router.get('/actors', async (req, res) => {
   await knex('actors')
     .select('*')
     .then((actors) => {
-      res.json(actors);
+      if (actors.length === 0) {
+        return res.status(404).json({ error: 'Actors not found' });
+      }
+      let dto = []
+      actors.forEach(actor => {
+        dto.push(new ListActorsDto(actor.id, actor.fullName, actor.bio, actor.sex, actor.date_of_birth).toJSON())
+      })
+      res.json(dto);
     })
 })
 router.get('/genres', async (req, res) => {
