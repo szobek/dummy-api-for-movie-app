@@ -9,6 +9,8 @@ import {
   getMoviesById,
   searchMovies
 } from '../services/movieService.js';
+import { ListGenreDto } from '../dtos/listGenreDto.js';
+
 
 router.get('/', async (req, res) => {
   getAllMovies(req, res)
@@ -22,8 +24,15 @@ router.get('/actors', async (req, res) => {
     })
 })
 router.get('/genres', async (req, res) => {
+  let dto=[]
   getAllGenre().then((genres) => {
-    res.json(genres);
+    if (genres.length === 0) {
+      return res.status(404).json({ error: 'Genres not found' });
+    }
+    genres.forEach(genre => {
+      dto.push(new ListGenreDto(genre.id,genre.name).toJSON())
+    })
+    res.json(dto);
   })
 });
 
@@ -41,7 +50,7 @@ router.get('/genres/:id', async (req, res) => {
               res.json(movies);
             })
             .catch((err) => {
-              res.status(500).json({ error: 'Internal ___ server error' });
+              res.status(500).json({ error: 'Internal server error' });
             });
         } else {
           res.status(404).json({ error: 'Genre in movies not found' });
