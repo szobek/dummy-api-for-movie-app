@@ -6,7 +6,8 @@ import {
   getAllMovies,
   getMoviesByGenre,
   getMovieById,
-  getMoviesById
+  getMoviesById,
+  searchMovies
 } from '../services/movieService.js';
 
 router.get('/', async (req, res) => {
@@ -68,16 +69,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/search', async (req, res) => {
-  const searchTerm = req.body;
-  await knex('movies')
-    .where('title', 'like', `%${searchTerm.title}%`)
-    .where('year', 'like', `${searchTerm.year}%`)
-    .where('rating', '>=', searchTerm.rating)
-    .then((movies) => {
-      res.status(200).json(movies);
-    }).catch((err) => {
-      console.error(err);
-    });
+ searchMovies(req,res)
 });
 
 

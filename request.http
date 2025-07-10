@@ -10,8 +10,9 @@ Content-Type: application/json
 
 {
     "title":"",
-    "year":1994,
-    "rating":8.8
+    "year":"",
+    "rating":1,
+    "actor":""
 
 }
 

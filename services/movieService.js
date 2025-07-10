@@ -34,6 +34,31 @@ const getAllMovies=async (req,res)=>{
       return movie
     })
 }
+const searchMovies=async (req,res)=>{
+  const query ="SELECT   m.title AS movie_title,  m.description AS movie_description,  m.rating AS movie_rating,  m.year AS movie_year,  GROUP_CONCAT(DISTINCT a2.fullName SEPARATOR ', ') AS actors,  GROUP_CONCAT(DISTINCT g.name SEPARATOR ', ') AS genres,  m.id FROM   movies m JOIN   `movie-actors` ma ON m.id = ma.movie_id JOIN   actors a ON ma.actor_id = a.id LEFT JOIN `movie-actors` ma2 ON m.id = ma2.movie_id LEFT JOIN actors a2 ON ma2.actor_id = a2.id LEFT JOIN `movie-genre` mg ON m.id = mg.movie_id LEFT JOIN genres g ON mg.genre_id = g.id WHERE a.fullName LIKE ? AND m.title LIKE ? AND m.year LIKE ? AND m.rating >= ? GROUP BY m.id, m.title, m.description, m.rating, m.year ORDER BY m.year DESC, m.title;"
+  const searchTerm = req.body;
+  if(searchTerm.title===""){
+    searchTerm.title="%"
+  }
+  if(searchTerm.actor===""){
+    searchTerm.actor="%"
+  }
+  if(searchTerm.year===""){
+    searchTerm.year="%"
+  }
+
+  if(searchTerm.rating===""){
+    searchTerm.rating=1
+  }
+  const q=knex.raw(query, [`${searchTerm.actor}`,`${searchTerm.title}`,`${searchTerm.year}`,searchTerm.rating]).toSQL()
+  return await knex.raw(query, [`%${searchTerm.actor}%`,`%${searchTerm.title}%`,`%${searchTerm.year}%`,searchTerm.rating])
+    .then((movies) => {
+      const formattedData = formatResultObject(movies[0])
+      res.status(200).json(formattedData);
+    }).catch((err) => {
+      console.error(err);
+    });
+}
 const formatResultObject =(data)=>{
    data.forEach(data => {
       // egy film adatai
@@ -52,4 +77,4 @@ const formatResultObject =(data)=>{
     return data;
 }
 
-export {getAllMovies,getAllGenre,getMovieById,getMoviesByGenre, getMoviesById}
+export {getAllMovies,getAllGenre,getMovieById,getMoviesByGenre, getMoviesById,searchMovies}
