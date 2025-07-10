@@ -27,4 +27,4 @@ GET http://localhost:3000/movies/genres/2
 GET http://localhost:3000/movies/actors
 
 ### get movies by actor
-GET http://localhost:3000/movies/actors/4
+GET http://localhost:3000/movies/actors/2
