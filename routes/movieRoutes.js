@@ -66,6 +66,7 @@ router.get('/genres/:id', async (req, res) => {
               res.status(500).json({ error: 'Internal server error' });
             });
         } else {
+          res.json([])
           res.status(404).json({ error: 'Genre in movies not found' });
         }
       }
@@ -113,13 +114,10 @@ router.get('/actors/:id', async (req, res) => {
             res.status(500).json({ error: 'Internal ___ server error' });
           });
       } else {
-        res.status(404).json({ error: 'Genre in movies not found' });
+        res.json([])
       }
     })
 }
 )
-
-
-
 
 export default router;

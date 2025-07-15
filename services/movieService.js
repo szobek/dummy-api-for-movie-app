@@ -51,7 +51,7 @@ const searchMovies = async (req, res) => {
     searchTerm.actor = "%"
   }
   if (searchTerm.year === "") {
-    searchTerm.year = "%"
+    searchTerm.year = "1900"
   }
 
   if (searchTerm.rating === "") {
@@ -60,7 +60,7 @@ const searchMovies = async (req, res) => {
   const q = [
     `%${searchTerm.actor}%`,
     `%${searchTerm.title}%`,
-    `%${searchTerm.year}%`,
+    `${searchTerm.year}`,
     searchTerm.rating,
     searchTerm.genre
   ]
