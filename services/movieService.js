@@ -39,8 +39,11 @@ const getMoviesById = async (idArray) => {
   return movies
 }
 const searchMovies = async (req, res) => {
-  const query = "SELECT m.id AS movie_id,  m.title AS movie_title,  m.description AS movie_description,  m.rating AS movie_rating,  m.year AS movie_year,  GROUP_CONCAT(DISTINCT a2.fullName SEPARATOR ', ') AS actors,  GROUP_CONCAT(DISTINCT g.name SEPARATOR ', ') AS genres,  m.id FROM   movies m JOIN   `movie-actors` ma ON m.id = ma.movie_id JOIN   actors a ON ma.actor_id = a.id LEFT JOIN `movie-actors` ma2 ON m.id = ma2.movie_id LEFT JOIN actors a2 ON ma2.actor_id = a2.id LEFT JOIN `movie-genre` mg ON m.id = mg.movie_id LEFT JOIN genres g ON mg.genre_id = g.id WHERE a.fullName LIKE ? AND m.title LIKE ? AND m.year LIKE ? AND m.rating >= ? AND g.id=? GROUP BY m.id, m.title, m.description, m.rating, m.year ORDER BY m.year DESC, m.title;"
+  const query = "SELECT m.id AS movie_id,  m.title AS movie_title,  m.description AS movie_description,  m.rating AS movie_rating,  m.year AS movie_year,  GROUP_CONCAT(DISTINCT a2.fullName SEPARATOR ', ') AS actors,  GROUP_CONCAT(DISTINCT g.name SEPARATOR ', ') AS genres,  m.id FROM   movies m JOIN   `movie-actors` ma ON m.id = ma.movie_id JOIN   actors a ON ma.actor_id = a.id LEFT JOIN `movie-actors` ma2 ON m.id = ma2.movie_id LEFT JOIN actors a2 ON ma2.actor_id = a2.id LEFT JOIN `movie-genre` mg ON m.id = mg.movie_id LEFT JOIN genres g ON mg.genre_id = g.id WHERE a.fullName LIKE ? AND m.title LIKE ? AND m.year >= ? AND m.rating >= ? AND g.id LIKE ? GROUP BY m.id, m.title, m.description, m.rating, m.year ORDER BY m.year DESC, m.title;"
   const searchTerm = req.body;
+  if (searchTerm.genre === "") {
+    searchTerm.genre = "%"
+  }
   if (searchTerm.title === "") {
     searchTerm.title = "%"
   }
