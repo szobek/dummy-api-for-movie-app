@@ -12,7 +12,8 @@ Content-Type: application/json
     "title":"",
     "year":"",
     "rating":1,
-    "actor":""
+    "actor":"",
+    "genre":2
 
 }
 
