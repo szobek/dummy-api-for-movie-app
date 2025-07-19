@@ -31,4 +31,4 @@ GET http://localhost:3000/movies/actors
 GET http://localhost:3000/movies/actors/2
 
 ### get all data from google sheet
-GET http://localhost:3000/data
+GET http://localhost:3000/movies/data

@@ -13,10 +13,10 @@ import { ListGenreDto } from '../dtos/listGenreDto.js';
 import { ListActorsDto } from '../dtos/ListActorsDto.js';
 
 
-
 router.get('/', async (req, res) => {
   getAllMovies(req, res)
 });
+
 
 router.get('/actors', async (req, res) => {
   await knex('actors')
