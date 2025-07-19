@@ -67,7 +67,7 @@ router.get('/genres/:id', async (req, res) => {
             });
         } else {
           res.json([])
-          res.status(404).json({ error: 'Genre in movies not found' });
+          // res.status(404).json({ error: 'Genre in movies not found' });
         }
       }
     )
