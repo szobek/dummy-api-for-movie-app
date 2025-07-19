@@ -13,8 +13,10 @@
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^5.1.0",
+    "googleapis": "^153.0.0",
     "knex": "^3.1.0",
     "mysql2": "^3.14.1",
     "nodemon": "^3.1.10"
-  }
+  },
+  "type": "module"
 }
