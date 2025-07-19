@@ -25,7 +25,6 @@ const fetchDataBeforeSeed = async (knex) => {
     range,
   });
   const dataFromSheet = response.data.values;
-  const genres = convert(dataFromSheet);
 
   if (dataFromSheet && dataFromSheet.length > 0) {
     const genres = convert(dataFromSheet);
