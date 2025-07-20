@@ -11,10 +11,10 @@ export default {
       database: 'movie_db',
     },
     migrations: {
-      directory: './migrations',
+      directory: './src/db/migrations',
     },
     seeds: {
-      directory: './seeds',
+      directory: './src/db/seeds',
     },
   },
 
@@ -27,10 +27,10 @@ export default {
       database: process.env.DB_NAME,
     },
     migrations: {
-      directory: './migrations',
+      directory: './src/db/migrations',
     },
     seeds: {
-      directory: './seeds',
+      directory: './src/db/seeds',
     },
   },
 };

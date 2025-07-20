@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router()
-import knex from '../db.js';
+import knex from '../db/db.js';
 import {
   getAllGenre,
   getAllMovies,
