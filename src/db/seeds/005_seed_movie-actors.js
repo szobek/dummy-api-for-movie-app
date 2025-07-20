@@ -25,7 +25,7 @@ const fetchDataBeforeSeed = async (knex) => {
     const client = await auth.getClient();
     const sheets = google.sheets({ version: 'v4', auth: client });
     const spreadsheetId = process.env.GOOGLE_SHEET_ID || '';
-    const range = process.env.GOOGLE_SHEET_RANGE || '';
+    const range = process.env.GOOGLE_SHEET_RANGE_FOR_MOVIES || '';
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,

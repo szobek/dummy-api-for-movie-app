@@ -27,7 +27,7 @@ const fetchDataBeforeSeed = async (knex) => {
     const client = await auth.getClient();
     const sheets = google.sheets({ version: 'v4', auth: client });
     const spreadsheetId = process.env.GOOGLE_SHEET_ID || '';
-    const range = process.env.GOOGLE_SHEET_RANGE || '';
+    const range = process.env.GOOGLE_SHEET_RANGE_FOR_MOVIES || '';
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,
@@ -38,6 +38,7 @@ const fetchDataBeforeSeed = async (knex) => {
       await knex('genres')
         .select('id', 'name')
         .then((res) => {
+          
           dataFromSheet.forEach((row) => {
             movieId++;
             if (row[4]) {
@@ -60,7 +61,6 @@ const fetchDataBeforeSeed = async (knex) => {
     } else {
       console.log('No data found in Google Sheets.');
     }
-
     await knex('movie-genre').insert(objects);
 
   } catch (error) {
